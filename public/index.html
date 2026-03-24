@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AgentCordon - The identity layer your agents deserve</title>
+  <meta name="description" content="Secure, auditable, policy-controlled credential brokerage for autonomous agents. Self-hosting first." />
+  <meta name="theme-color" content="#0d0d0d" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0d0d0d;
+      color: #e5e5e5;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* -- Hero -- */
+    .hero {
+      text-align: center;
+      padding: 80px 0 64px;
+    }
+
+    .hero-logo {
+      width: 64px;
+      height: auto;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: 2.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .hero .tagline {
+      font-size: 1.2rem;
+      color: #888;
+      margin-bottom: 40px;
+    }
+
+    /* -- Install box -- */
+    .install-box {
+      background: #161616;
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      max-width: 100%;
+      transition: border-color 0.2s ease;
+    }
+
+    .install-box:hover {
+      border-color: #3a3a3a;
+    }
+
+    .install-box code {
+      font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', 'Courier New', monospace;
+      font-size: 0.95rem;
+      color: #e5e5e5;
+      white-space: nowrap;
+      user-select: all;
+    }
+
+    .copy-btn {
+      background: #d4551a;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s ease, transform 0.1s ease;
+      min-width: 72px;
+    }
+
+    .copy-btn:hover {
+      background: #e06020;
+    }
+
+    .copy-btn:active {
+      transform: scale(0.97);
+    }
+
+    .copy-btn:focus-visible {
+      outline: 2px solid #d4551a;
+      outline-offset: 2px;
+    }
+
+    /* -- Section shared -- */
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 40px;
+      letter-spacing: -0.01em;
+    }
+
+    /* -- Features grid -- */
+    .features {
+      padding: 64px 0;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: #161616;
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      padding: 28px 24px;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .feature-card:hover {
+      border-color: #3a3a3a;
+      transform: translateY(-2px);
+    }
+
+    .feature-icon {
+      width: 36px;
+      height: 36px;
+      margin-bottom: 16px;
+      color: #d4551a;
+    }
+
+    .feature-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      font-size: 0.9rem;
+      color: #888;
+      line-height: 1.5;
+    }
+
+    /* -- How it works -- */
+    .how-it-works {
+      padding: 64px 0;
+    }
+
+    .steps {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0;
+      position: relative;
+    }
+
+    .step {
+      flex: 1;
+      max-width: 260px;
+      text-align: center;
+      position: relative;
+      padding: 0 16px;
+    }
+
+    .step-number {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid #d4551a;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #d4551a;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+      background: #0d0d0d;
+    }
+
+    .step h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .step p {
+      font-size: 0.875rem;
+      color: #888;
+      line-height: 1.5;
+    }
+
+    /* Connecting lines between steps */
+    .step-connector {
+      display: flex;
+      align-items: center;
+      padding-top: 22px;
+    }
+
+    .step-connector svg {
+      display: block;
+    }
+
+    /* -- Footer -- */
+    footer {
+      border-top: 1px solid #2a2a2a;
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 16px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: #888;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: #e5e5e5;
+    }
+
+    .footer-links a:focus-visible {
+      outline: 2px solid #d4551a;
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    .footer-tagline {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 8px;
+    }
+
+    .footer-copyright {
+      font-size: 0.8rem;
+      color: #555;
+    }
+
+    /* -- Responsive -- */
+    @media (max-width: 768px) {
+      .hero {
+        padding: 56px 0 48px;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero .tagline {
+        font-size: 1rem;
+      }
+
+      .install-box {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+        padding: 16px;
+      }
+
+      .install-box code {
+        font-size: 0.82rem;
+        word-break: break-all;
+        white-space: normal;
+        user-select: all;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .steps {
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+      }
+
+      .step {
+        max-width: 100%;
+      }
+
+      .step-connector {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+
+      .container {
+        padding: 0 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container">
+      <!-- Bowtie logo (inline SVG, cropped to content) -->
+      <svg class="hero-logo" viewBox="0 0 340 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AgentCordon bowtie logo">
+        <g transform="translate(0, 0)">
+          <path d="M20 10 Q20 0, 32 0 L140 80 Q155 92, 155 100 Q155 108, 140 120 L32 200 Q20 200, 20 190 Z"
+                fill="none" stroke="#d4551a" stroke-width="2.5" />
+          <path d="M320 10 Q320 0, 308 0 L200 80 Q185 92, 185 100 Q185 108, 200 120 L308 200 Q320 200, 320 190 Z"
+                fill="none" stroke="#d4551a" stroke-width="2.5" />
+          <rect x="132" y="72" width="76" height="56" rx="14"
+                fill="none" stroke="#d4551a" stroke-width="2.5" />
+        </g>
+      </svg>
+
+      <h1 id="hero-title">AgentCordon</h1>
+      <p class="tagline">The identity layer your agents deserve.</p>
+
+      <div class="install-box">
+        <code id="install-cmd">curl -fsSL https://getcordoned.sh | bash</code>
+        <button class="copy-btn" id="copy-btn" type="button" aria-label="Copy install command to clipboard">Copy</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features" aria-labelledby="features-title">
+    <div class="container">
+      <h2 class="section-title" id="features-title">Built for agent security</h2>
+      <div class="features-grid">
+
+        <!-- Encrypted Vault -->
+        <div class="feature-card">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="11" width="18" height="11" rx="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            <circle cx="12" cy="16" r="1" />
+          </svg>
+          <h3>Encrypted Vault</h3>
+          <p>AES-256-GCM encrypted credential storage. Your secrets never leave your infrastructure.</p>
+        </div>
+
+        <!-- Cedar Policies -->
+        <div class="feature-card">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <path d="M9 12l2 2 4-4" />
+          </svg>
+          <h3>Cedar Policies</h3>
+          <p>Fine-grained access control powered by AWS Cedar. Every decision auditable.</p>
+        </div>
+
+        <!-- Credential Proxy -->
+        <div class="feature-card">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14" />
+            <path d="M12 5l7 7-7 7" />
+            <rect x="1" y="8" width="6" height="8" rx="1" opacity="0.5" />
+          </svg>
+          <h3>Credential Proxy</h3>
+          <p>Agents never see raw tokens. Credentials injected at the network edge.</p>
+        </div>
+
+        <!-- Workspace Identity -->
+        <div class="feature-card">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4" />
+          </svg>
+          <h3>Workspace Identity</h3>
+          <p>Cryptographic agent enrollment with Ed25519 keypairs. Zero-trust by default.</p>
+        </div>
+
+        <!-- MCP Gateway -->
+        <div class="feature-card">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="8" rx="2" />
+            <rect x="2" y="14" width="20" height="8" rx="2" />
+            <line x1="6" y1="6" x2="6.01" y2="6" stroke-width="2" />
+            <line x1="6" y1="18" x2="6.01" y2="18" stroke-width="2" />
+            <path d="M12 10v4" />
+          </svg>
+          <h3>MCP Gateway</h3>
+          <p>Model Context Protocol support with per-tool scope control and credential injection.</p>
+        </div>
+
+        <!-- Audit Trail -->
+        <div class="feature-card">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+            <rect x="8" y="2" width="8" height="4" rx="1" />
+            <line x1="8" y1="10" x2="16" y2="10" />
+            <line x1="8" y1="14" x2="16" y2="14" />
+            <line x1="8" y1="18" x2="12" y2="18" />
+          </svg>
+          <h3>Audit Trail</h3>
+          <p>Every token issuance and access decision logged. SOC-ready from day one.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-it-works" aria-labelledby="hiw-title">
+    <div class="container">
+      <h2 class="section-title" id="hiw-title">How it works</h2>
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-number" aria-hidden="true">1</div>
+          <h3>Install</h3>
+          <p>One command. Self-contained binary.</p>
+        </div>
+
+        <div class="step-connector" aria-hidden="true">
+          <svg width="48" height="24" viewBox="0 0 48 24" fill="none">
+            <line x1="0" y1="12" x2="36" y2="12" stroke="#2a2a2a" stroke-width="2" />
+            <polyline points="32,6 42,12 32,18" stroke="#d4551a" stroke-width="2" fill="none" />
+          </svg>
+        </div>
+
+        <div class="step">
+          <div class="step-number" aria-hidden="true">2</div>
+          <h3>Enroll</h3>
+          <p>Register your workspace. Cryptographic identity, not passwords.</p>
+        </div>
+
+        <div class="step-connector" aria-hidden="true">
+          <svg width="48" height="24" viewBox="0 0 48 24" fill="none">
+            <line x1="0" y1="12" x2="36" y2="12" stroke="#2a2a2a" stroke-width="2" />
+            <polyline points="32,6 42,12 32,18" stroke="#d4551a" stroke-width="2" fill="none" />
+          </svg>
+        </div>
+
+        <div class="step">
+          <div class="step-number" aria-hidden="true">3</div>
+          <h3>Proxy</h3>
+          <p>Route API calls through AgentCordon. Policies enforced, credentials injected.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <nav aria-label="Footer links">
+        <ul class="footer-links">
+          <li><a href="https://github.com/agentcordon/agentcordon">GitHub</a></li>
+          <li><a href="https://docs.getcordoned.sh">Docs</a></li>
+          <li><a href="https://discord.gg/agentcordon">Discord</a></li>
+        </ul>
+      </nav>
+      <p class="footer-tagline">Self-hosting first. Always.</p>
+      <p class="footer-copyright">&copy; 2025 AgentCordon</p>
+    </div>
+  </footer>
+
+  <!-- Copy-to-clipboard -->
+  <script>
+    (function () {
+      var btn = document.getElementById('copy-btn');
+      var cmd = document.getElementById('install-cmd');
+      if (!btn || !cmd) return;
+
+      btn.addEventListener('click', function () {
+        var text = cmd.textContent || cmd.innerText;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(onCopied, fallbackCopy);
+        } else {
+          fallbackCopy();
+        }
+      });
+
+      function fallbackCopy() {
+        var range = document.createRange();
+        range.selectNodeContents(cmd);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        try { document.execCommand('copy'); onCopied(); } catch (e) { /* silent */ }
+        sel.removeAllRanges();
+      }
+
+      function onCopied() {
+        var original = btn.textContent;
+        btn.textContent = 'Copied!';
+        btn.setAttribute('aria-label', 'Copied to clipboard');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.setAttribute('aria-label', 'Copy install command to clipboard');
+        }, 2000);
+      }
+    })();
+  </script>
+</body>
+</html>
